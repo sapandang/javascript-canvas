@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
+        Your browser does not support the HTML canvas tag.
+    </canvas>
+
+
+    <script>
+        //vars
+        var canvasHeight = 600;
+        var canvasWidth = 600;
+        //canvas
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+
+
+        // Start the first frame request
+        window.requestAnimationFrame(frameLoop);
+
+        //main loop
+        let secondsPassed;
+        let oldTimeStamp;
+        let fps;
+        //-
+        function frameLoop(timeStamp) {
+
+            // Calculate the number of seconds passed since the last frame
+            secondsPassed = (timeStamp - oldTimeStamp) / 1000;
+            oldTimeStamp = timeStamp;
+
+            // Calculate fps
+            fps = Math.round(1 / secondsPassed);
+
+            // Draw number to the screen
+            //ctx.translate(0, 0);
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+            ctx.font = '25px Arial';
+            ctx.fillStyle = 'black';
+            ctx.fillText("FPS: " + fps, 10, 30);
+            //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            //>>>>>>>>>>> start draw code from here
+
+            draw();
+
+            // Keep requesting new frames      
+            window.requestAnimationFrame(frameLoop);
+        }
+        //---------------------------------
+        //Draw command
+        let i = 0;
+        function draw() {
+
+            // if (i >9000000) {
+            //     i = 0;
+            // }
+            //react
+            let randomColor = Math.random() > 0.5 ? '#ff8080' : '#0099b0';
+            ctx.fillStyle = randomColor;
+            ctx.fillRect(i + 10, 50, 10, 10);
+            
+            //roate in circle
+            var radius=600;
+            var centerPos=[canvasWidth/2,canvasHeight/2];
+
+            /**
+             * Just comment the beginPath this will prevent the stroke from being erased
+             * 
+             * */
+            ctx.fillStyle = randomColor;
+            //ctx.beginPath(); //wihout this line does not clear
+            ctx.moveTo(centerPos[0], centerPos[1]);
+            ctx.lineTo(centerPos[0]+radius*Math.cos(i), centerPos[1]+radius*Math.sin(i));
+            //ctx.strokeStyle=randomColor;
+            ctx.stroke();
+
+            //draw line between previous point to new point
+            //ctx.beginPath(); //wihout this line does not clear
+            ctx.moveTo(centerPos[0]+(i-1)*Math.sin(i-1), centerPos[1]+(i-1)*Math.cos(i-1));
+            ctx.lineTo(centerPos[0]+i*Math.sin(i), centerPos[1]+i*Math.cos(i));
+            //ctx.strokeStyle=randomColor;
+            ctx.stroke();
+            
+            
+            //====update
+            i++;
+        }
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

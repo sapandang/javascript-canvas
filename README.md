@@ -14,11 +14,11 @@
 * https://www.khanacademy.org/computer-programming/3d-engine-v2/2398428159
 * https://kitsunegames.com/post/development/2016/07/11/canvas3d-3d-rendering-in-javascript/
 
-# 3d renderer
-* https://github.com/leikareipa/retro-ngon
+## 3d renderer
+*# https://github.com/leikareipa/retro-ngon
 * https://github.com/Helioform/3DRasterizer
 * https://github.com/IvanNSBS/Pixel-Renderer
 * https://www.kevs3d.co.uk/dev/
 
-# game engine
+## game engine
 * https://bengsfort.github.io/articles/making-a-js-game-part-1-game-engine/
